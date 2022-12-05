@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from "expo-font";
+import ShopNavigator from "./src/navigation/ShopNavigator";
+import BottomTabNavigator from "./src/navigation/BottomTabNavigator";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded] = useFonts({
+    Tillana: require("./src/assets/fonts/Tillana-SemiBold.ttf"),
+    MontSerrat: require('./src/assets/fonts/Montserrat-Regular.ttf'),
+    IndieFlower: require('./src/assets/fonts/IndieFlower-Regular.ttf'),
+    SmoochSans: require('./src/assets/fonts/SmoochSans-Regular.ttf'),
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return <BottomTabNavigator />;
+  // return <ShopNavigator />;
+}
